@@ -1,0 +1,5 @@
+input/
+.spyproject/
+.idea/
+*.pyc
+logs/
