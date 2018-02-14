@@ -1,3 +1,4 @@
+
 from importlib import reload
 
 from tensorflow.python.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint, TensorBoard
@@ -30,12 +31,12 @@ callbacks = [EarlyStopping(monitor='val_loss',
 '''
 
 
-model = get_unet_64(input_shape=(128, 128, 3),num_classes=3)
+model = get_unet_64(input_shape=(128, 128, 3),num_classes=1)
 model.summary()
 batch_size,nb_epoch = 16,100
 
-@timeit
-model.fit(x=X_train_org, y=Y_train_mask, batch_size=batch_size, epochs=nb_epoch,
+#@timeit
+model.fit(x=X_train_org, y=Y_train_mask.reshape(len(Y_train_mask),128, 128, 1), batch_size=batch_size, epochs=nb_epoch,
               shuffle=True, verbose=2, validation_split=0.2
               ,callbacks=callbacks
           )

@@ -1,8 +1,12 @@
+
 import glob
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+from importlib import reload
 
+import load_data
+reload(load_data)
 from load_data import load_img
 
 INPUT_PATH = './input'
