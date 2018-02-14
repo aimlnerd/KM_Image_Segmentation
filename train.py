@@ -20,20 +20,17 @@ callbacks = [EarlyStopping(monitor='val_loss',
                                patience=4,
                                verbose=1,
                                epsilon=1e-4)
-             ]
-
-'''
-,ModelCheckpoint(monitor='val_loss',
-                filepath='./weights/best_weights.hdf5',
-                save_best_only=True,
-                save_weights_only=True)
-,TensorBoard(log_dir='logs')
-'''
+            ,ModelCheckpoint(monitor='val_loss',
+                            filepath='./weights/best_weights.hdf5',
+                            save_best_only=True,
+                            save_weights_only=True)
+            ,TensorBoard(log_dir='logs')
+            ]
 
 
-model = get_unet_64(input_shape=(128, 128, 3),num_classes=1)
+model = get_unet_64(input_shape=(128, 128, 3),num_classes=1,filters=64)
 model.summary()
-batch_size,nb_epoch = 16,100
+batch_size,nb_epoch = 4,100
 
 #@timeit
 model.fit(x=X_train_org, y=Y_train_mask.reshape(len(Y_train_mask),128, 128, 1), batch_size=batch_size, epochs=nb_epoch,

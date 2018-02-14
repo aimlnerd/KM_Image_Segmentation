@@ -26,6 +26,7 @@ loadimg = load_img(flist_train_org = flist_train_l1_org
 )
 X_train_id, X_train_org, Y_train_mask, X_train_ref = loadimg.load_train()
 
+X_train_org.shape
 '''
 del(X_train_ref)
 del(X_train_org)
